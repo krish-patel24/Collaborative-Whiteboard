@@ -141,11 +141,3 @@ vite.config.ts.timestamp-*
 # OS files
 .DS_Store
 Thumbs.db
-
-# Editor
-.vscode/
-<<<<<<< HEAD
-.idea/
-=======
-.idea/
->>>>>>> c5bcf659a1aa62043e316db63a88bb61dd9ecb12

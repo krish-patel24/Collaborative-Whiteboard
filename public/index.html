@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Collaborative Whiteboard</title>
+    <!-- Link to the CSS file for styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header with room info and connection status -->
+        <header class="header">
+            <h1 class="logo">Whiteboard</h1>
+            <div class="room-info">
+                <span class="room-label">Room:</span>
+                <!-- Input to enter the room name -->
+                <input type="text" id="roomInput" class="room-input" placeholder="Enter room name">
+                <!-- Button to join the room -->
+                <button id="joinBtn" class="btn btn-primary">Join</button>
+            </div>
+            <!-- Shows whether the user is connected or disconnected -->
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Disconnected</span>
+            </div>
+        </header>
+
+        <!-- Toolbar with tools and settings -->
+        <div class="toolbar">
+            <div class="tool-group">
+                <!-- Pen tool button -->
+                <button class="tool-btn active" id="penTool" title="Pen Tool">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                        <path d="M2 2l7.586 7.586"/>
+                        <circle cx="11" cy="11" r="2"/>
+                    </svg>
+                    <span>Pen</span>
+                </button>
+
+                <!-- Text tool button -->
+                <button class="tool-btn" id="textTool" title="Text Tool">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 7 4 4 20 4 20 7"/>
+                        <line x1="9" y1="20" x2="15" y2="20"/>
+                        <line x1="12" y1="4" x2="12" y2="20"/>
+                    </svg>
+                    <span>Text</span>
+                </button>
+            </div>
+
+            <div class="tool-group">
+                <!-- Color picker for pen or text -->
+                <label class="tool-label">
+                    Color
+                    <input type="color" id="colorPicker" value="#000000" class="color-picker">
+                </label>
+
+                <!-- Stroke width slider -->
+                <label class="tool-label">
+                    Size
+                    <input type="range" id="strokeWidth" min="1" max="20" value="3" class="stroke-slider">
+                    <span id="strokeValue">3</span>
+                </label>
+            </div>
+
+            <div class="tool-group">
+                <!-- Clear board button -->
+                <button class="tool-btn" id="clearBtn" title="Clear Board">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                    <span>Clear</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Canvas container where the whiteboard is drawn -->
+        <div class="canvas-container" id="canvasContainer">
+            <canvas id="whiteboard"></canvas>
+            
+            <!-- Hidden text input overlay for typing text on the canvas -->
+            <div class="text-input-overlay" id="textInputOverlay" style="display: none;">
+                <input type="text" id="textInput" class="text-input" placeholder="Type and press Enter">
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Socket.IO client library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Include the main whiteboard JS file -->
+    <script src="whiteboard.js"></script>
+</body>
+</html>

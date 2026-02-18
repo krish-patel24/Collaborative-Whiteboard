@@ -29,3 +29,6 @@ A JavaScript project for a collaborative whiteboard application, utilizing HTML/
 ## Notes
 - node_modules/ is excluded via .gitignore
 - Make sure you have Node.js installed
+
+## Author
+Krish Patel
